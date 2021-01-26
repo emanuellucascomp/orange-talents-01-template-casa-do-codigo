@@ -1,6 +1,5 @@
 package br.com.wb.casadocodigo.controller;
 
-import java.net.URI;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -12,17 +11,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.wb.casadocodigo.config.validacao.AutorValidator;
 import br.com.wb.casadocodigo.controller.dto.AutorDTO;
 import br.com.wb.casadocodigo.controller.form.AutorForm;
 import br.com.wb.casadocodigo.model.Autor;
@@ -32,8 +34,16 @@ import br.com.wb.casadocodigo.repository.AutorRepository;
 @RequestMapping("/api/v1/autor")
 public class AutorController {
 	
+	//TODO verificar uso com entity manager
 	@Autowired
 	private AutorRepository autorRepository;
+	@Autowired
+	private AutorValidator autorValidator;
+
+	@InitBinder
+	public void init(WebDataBinder binder) {
+		binder.addValidators(autorValidator);
+	}
 	
 	@GetMapping
 	public Page<AutorDTO> lista(@RequestParam(required = false) String nome, 
