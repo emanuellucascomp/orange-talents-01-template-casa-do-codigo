@@ -4,13 +4,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import br.com.wb.casadocodigo.config.validacao.UniqueValue;
 import br.com.wb.casadocodigo.model.Autor;
 
 public class AutorForm {
 	
 	@NotBlank @Size(max = 255)
 	private String nome;
-	@Email @NotBlank @Size(max = 255)
+	@Email @NotBlank @Size(max = 255) @UniqueValue(domainClass = Autor.class, fieldName = "email", message = "Email deve ser único")
 	private String email;
 	@NotBlank @Size(max = 400)
 	private String descricao;

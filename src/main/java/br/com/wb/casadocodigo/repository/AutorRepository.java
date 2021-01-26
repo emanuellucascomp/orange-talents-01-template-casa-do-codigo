@@ -9,6 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.wb.casadocodigo.model.Autor;
 
 public interface AutorRepository extends JpaRepository<Autor, Long> {
-	Page<Autor> findByNomeContaining(String nome, Pageable paginacao);
 	Optional<Autor> findByEmail(String email);
 }
