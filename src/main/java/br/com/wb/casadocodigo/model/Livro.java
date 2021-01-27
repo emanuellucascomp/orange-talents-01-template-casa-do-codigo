@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -43,7 +45,7 @@ public class Livro {
 
 	public Livro(String titulo, @Size(max = 500) String resumo, String sumario,
 			@DecimalMin(value = "20.0", inclusive = true) BigDecimal preco, @Min(100) Integer paginas, String isbn,
-			LocalDate dataEntrada, Categoria categoria, Autor autor) {
+			LocalDate dataEntrada, @NotNull @Valid Categoria categoria, @NotNull @Valid Autor autor) {
 		this.titulo = titulo;
 		this.resumo = resumo;
 		this.sumario = sumario;

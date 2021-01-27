@@ -71,8 +71,8 @@ public class LivroForm {
 	}
 	
 	public Livro converter(CategoriaRepository categoriaRepository, AutorRepository autorRepository) {
-		Categoria categoria = categoriaRepository.getOne(categoriaId);
-		Autor autor = autorRepository.getOne(autorId);
+		@NotNull Categoria categoria = categoriaRepository.getOne(categoriaId);
+		@NotNull Autor autor = autorRepository.getOne(autorId);
 		return new Livro(titulo, resumo, sumario, preco, paginas, isbn, dataEntrada, categoria, autor);
 	}
 	
