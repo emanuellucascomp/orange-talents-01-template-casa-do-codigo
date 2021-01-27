@@ -8,12 +8,12 @@ public class EstadoDTO {
 	
 	private Long id;
 	private String nome;
-	private String pais;
+	private Long paisId;
 	
 	public EstadoDTO(Estado estado) {
 		this.id = estado.getId();
 		this.nome = estado.getNome();
-		this.pais = estado.getPais().getNome();
+		this.paisId = estado.getPais().getId();
 	}
 	
 	public Long getId() {
@@ -24,8 +24,8 @@ public class EstadoDTO {
 		return nome;
 	}
 
-	public String getPais() {
-		return pais;
+	public Long getPaisId() {
+		return paisId;
 	}
 	
 	public static Page<EstadoDTO> converter(Page<Estado> estados){
