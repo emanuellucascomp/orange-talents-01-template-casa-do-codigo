@@ -37,9 +37,7 @@ public class LivroForm {
 	@Future
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
 	private LocalDate dataEntrada;
-	@NotNull
 	private Long categoriaId;
-	@NotNull
 	private Long autorId;
 	
 	public String getTitulo() {
