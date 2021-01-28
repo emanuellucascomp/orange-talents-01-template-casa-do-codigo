@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.sun.istack.NotNull;
 
+import br.com.wb.casadocodigo.config.validacao.ExistsValue;
 import br.com.wb.casadocodigo.config.validacao.UniqueValue;
 import br.com.wb.casadocodigo.model.Autor;
 import br.com.wb.casadocodigo.model.Categoria;
@@ -37,7 +38,9 @@ public class LivroForm {
 	@Future
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
 	private LocalDate dataEntrada;
+	@NotNull @ExistsValue(domainClass = Categoria.class, fieldName = "id", message = "Categoria inexistente")
 	private Long categoriaId;
+	@NotNull @ExistsValue(domainClass = Autor.class, fieldName = "id", message = "Autor inexistente")
 	private Long autorId;
 	
 	public String getTitulo() {
